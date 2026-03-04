@@ -11,8 +11,8 @@ using MosqueDonationAPI.Data;
 namespace MosqueDonationAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260304001821_AddUserMosqueAssignmentAdded1")]
-    partial class AddUserMosqueAssignmentAdded1
+    [Migration("20260304165321_M1")]
+    partial class M1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

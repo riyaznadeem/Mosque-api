@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MosqueDonationAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fabfdb06e0378a373a38a4241bb9f45d1f86800")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06d5748b81b7149053275b98339f514f8ebdb61c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MosqueDonationAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MosqueDonationAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -18,6 +18,8 @@ namespace MosqueDonationAPI.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    ShortName = table.Column<string>(type: "TEXT", nullable: false),
+                    UrduName = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
                     Address = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
                     City = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
                     State = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
@@ -41,6 +43,7 @@ namespace MosqueDonationAPI.Migrations
                     Email = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
                     Role = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    AssignedMosqueId = table.Column<int>(type: "INTEGER", nullable: true),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastLoginAt = table.Column<DateTime>(type: "TEXT", nullable: true)
@@ -48,6 +51,12 @@ namespace MosqueDonationAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Mosques_AssignedMosqueId",
+                        column: x => x.AssignedMosqueId,
+                        principalTable: "Mosques",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +94,7 @@ namespace MosqueDonationAPI.Migrations
                     MosqueId = table.Column<int>(type: "INTEGER", nullable: false),
                     ReceivedByUserId = table.Column<int>(type: "INTEGER", nullable: false),
                     DonorName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    DonorNameUrdu = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     DonorPhone = table.Column<string>(type: "TEXT", maxLength: 20, nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Purpose = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
@@ -133,6 +143,11 @@ namespace MosqueDonationAPI.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_AssignedMosqueId",
+                table: "Users",
+                column: "AssignedMosqueId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
@@ -155,10 +170,10 @@ namespace MosqueDonationAPI.Migrations
                 name: "Donations");
 
             migrationBuilder.DropTable(
-                name: "Mosques");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Mosques");
         }
     }
 }
