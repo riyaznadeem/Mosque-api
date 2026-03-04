@@ -29,7 +29,7 @@ public class PdfService : IPdfService
 {
     public byte[] GenerateReceiptPdf(DonationReceiptData data, bool IsLanguage)
     {
-        string qrBase64 = GenerateQRCode($"https://localhost:44351/Verification/api/{data.ReceiptNumber}");
+        string qrBase64 = GenerateQRCode($"https://mosque-api-production.up.railway.app/api/Verification/{data.ReceiptNumber}");
 
         string html = IsLanguage switch
         {
