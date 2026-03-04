@@ -1,0 +1,6 @@
+@MosqueDonationAPI_HostAddress = http://localhost:5145
+
+GET {{MosqueDonationAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

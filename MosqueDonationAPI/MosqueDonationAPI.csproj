@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="QRCoder" Version="1.7.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.12.52" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="25.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.16.0" />
+  </ItemGroup>
+
+</Project>
