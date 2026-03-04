@@ -20,7 +20,8 @@ public static class DbInitializer
                 PasswordHash = HashPassword("Admin@123"),
                 Role = "Admin",
                 IsActive = true,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                AssignedMosqueId = 1
             };
             context.Users.Add(adminUser);
             await context.SaveChangesAsync(); // Pehle user save karo taaki ID generate ho
