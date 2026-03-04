@@ -13,19 +13,6 @@ public static class DbInitializer
         // Seed Admin User if not exists
         if (!context.Users.Any())
         {
-            var adminUser = new User
-            {
-                Username = "admin",
-                Email = "admin@mosque.com",
-                PasswordHash = HashPassword("Admin@123"),
-                Role = "Admin",
-                IsActive = true,
-                CreatedAt = DateTime.UtcNow,
-                AssignedMosqueId = 1
-            };
-            context.Users.Add(adminUser);
-            await context.SaveChangesAsync(); // Pehle user save karo taaki ID generate ho
-
             // Sample Mosques
             var mosques = new List<Mosque>
         {
@@ -50,6 +37,20 @@ public static class DbInitializer
         };
             context.Mosques.AddRange(mosques);
             await context.SaveChangesAsync();
+            var adminUser = new User
+            {
+                Username = "admin",
+                Email = "admin@mosque.com",
+                PasswordHash = HashPassword("Admin@123"),
+                Role = "Admin",
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                AssignedMosqueId = 1
+            };
+            context.Users.Add(adminUser);
+            await context.SaveChangesAsync(); // Pehle user save karo taaki ID generate ho
+
+
         }
     }
 
