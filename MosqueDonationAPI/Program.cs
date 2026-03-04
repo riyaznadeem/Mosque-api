@@ -43,9 +43,15 @@ builder.Services.AddScoped<IPdfService, PdfService>();
 // CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("ProductionPolicy", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(
+                "https://mosque-ui.vercel.app",     // Your Vercel frontend
+                "http://localhost:5173",            // Vite dev server
+                "http://localhost:3000",            // React dev server
+                "http://localhost:4200"             // Angular dev server
+            )
+        .AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -78,7 +84,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowAll");
+app.UseCors("ProductionPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<AuditMiddleware>();
