@@ -137,6 +137,21 @@ public class AuthController : ControllerBase
 
         return Ok(new { message = "Mosque assigned successfully" });
     }
+
+    [HttpPut("users/{id}/change-role")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> ChangeRole(int id, [FromBody] string role)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound(new { message = "User not found" });
+        }
+        user.Role = role;
+        await _context.SaveChangesAsync();
+
+        return Ok(new { message = "Mosque assigned successfully" });
+    }
     private static string HashPassword(string password)
     {
         using var sha256 = SHA256.Create();

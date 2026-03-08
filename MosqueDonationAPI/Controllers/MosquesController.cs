@@ -51,4 +51,40 @@ public class MosquesController : ControllerBase
 
         return CreatedAtAction(nameof(GetById), new { id = mosque.Id }, mosque);
     }
+
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Update(int id, [FromBody] Mosque updatedMosque)
+    {
+        var mosque = await _context.Mosques.FindAsync(id);
+        if (mosque == null || !mosque.IsActive)
+            return NotFound();
+
+        mosque.Name = updatedMosque.Name;
+        mosque.ShortName = updatedMosque.ShortName;
+        mosque.UrduName = updatedMosque.UrduName;
+        mosque.Address = updatedMosque.Address;
+        mosque.City = updatedMosque.City;
+        mosque.State = updatedMosque.State;
+        mosque.Pincode = updatedMosque.Pincode;
+        mosque.Phone = updatedMosque.Phone;
+
+        await _context.SaveChangesAsync();
+        return Ok(mosque);
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var mosque = await _context.Mosques.FindAsync(id);
+        if (mosque == null)
+            return NotFound();
+
+        // Soft delete
+        mosque.IsActive = false;
+
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
 }

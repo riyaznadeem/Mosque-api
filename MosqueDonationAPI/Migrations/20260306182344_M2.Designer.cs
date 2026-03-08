@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MosqueDonationAPI.Data;
 
@@ -10,9 +11,11 @@ using MosqueDonationAPI.Data;
 namespace MosqueDonationAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260306182344_M2")]
+    partial class M2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
@@ -113,168 +116,6 @@ namespace MosqueDonationAPI.Migrations
                     b.HasIndex("MosqueId");
 
                     b.ToTable("Children");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ChildAttendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<TimeSpan?>("CheckInTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<TimeSpan?>("CheckOutTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ChildId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClassId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("MarkedById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MosqueId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Remarks")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("MarkedById");
-
-                    b.HasIndex("MosqueId");
-
-                    b.HasIndex("ChildId", "Date")
-                        .IsUnique();
-
-                    b.ToTable("ChildAttendances");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ChildFee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("AdmissionFee")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("AmountPaid")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("BooksFee")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ChildId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClassId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DiscountRemarks")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DueDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal?>("ExaminationFee")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("LastPaymentDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastPaymentMethod")
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal?>("LateFee")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MosqueId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("OtherDiscount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("OtherFees")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("OtherFeesDescription")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentStatus")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ProcessedById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("ScholarshipDiscount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("SiblingDiscount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TuitionFee")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("UniformFee")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("MosqueId");
-
-                    b.HasIndex("ProcessedById");
-
-                    b.HasIndex("ChildId", "Year", "Month")
-                        .IsUnique();
-
-                    b.ToTable("ChildFees");
                 });
 
             modelBuilder.Entity("MosqueDonationAPI.Entities.Class", b =>
@@ -481,50 +322,6 @@ namespace MosqueDonationAPI.Migrations
                     b.ToTable("Donations");
                 });
 
-            modelBuilder.Entity("MosqueDonationAPI.Entities.FeePayment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ChildFeeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ReceivedById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Remarks")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChildFeeId");
-
-                    b.HasIndex("ReceivedById");
-
-                    b.ToTable("FeePayments");
-                });
-
             modelBuilder.Entity("MosqueDonationAPI.Entities.Imaam", b =>
                 {
                     b.Property<int>("Id")
@@ -572,143 +369,6 @@ namespace MosqueDonationAPI.Migrations
                     b.HasIndex("MosqueId");
 
                     b.ToTable("Imaams");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ImaamAttendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<TimeSpan?>("CheckInTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<TimeSpan?>("CheckOutTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ImaamId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("MarkedById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MosqueId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Remarks")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MarkedById");
-
-                    b.HasIndex("MosqueId");
-
-                    b.HasIndex("ImaamId", "Date")
-                        .IsUnique();
-
-                    b.ToTable("ImaamAttendances");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ImaamSalary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("AbsenceDeduction")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("BasicSalary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DeductionRemarks")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal?>("HousingAllowance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ImaamId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("LateDeduction")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MosqueId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("OtherAllowances")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("OtherDeductions")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("PaymentDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentRemarks")
-                        .HasMaxLength(500)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentStatus")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ProcessedById")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal?>("TransportAllowance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MosqueId");
-
-                    b.HasIndex("ProcessedById");
-
-                    b.HasIndex("ImaamId", "Year", "Month")
-                        .IsUnique();
-
-                    b.ToTable("ImaamSalaries");
                 });
 
             modelBuilder.Entity("MosqueDonationAPI.Entities.Mosque", b =>
@@ -879,72 +539,6 @@ namespace MosqueDonationAPI.Migrations
                     b.Navigation("Mosque");
                 });
 
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ChildAttendance", b =>
-                {
-                    b.HasOne("MosqueDonationAPI.Entities.Child", "Child")
-                        .WithMany()
-                        .HasForeignKey("ChildId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.Imaam", "MarkedBy")
-                        .WithMany()
-                        .HasForeignKey("MarkedById");
-
-                    b.HasOne("MosqueDonationAPI.Entities.Mosque", "Mosque")
-                        .WithMany()
-                        .HasForeignKey("MosqueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Child");
-
-                    b.Navigation("Class");
-
-                    b.Navigation("MarkedBy");
-
-                    b.Navigation("Mosque");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ChildFee", b =>
-                {
-                    b.HasOne("MosqueDonationAPI.Entities.Child", "Child")
-                        .WithMany()
-                        .HasForeignKey("ChildId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.Mosque", "Mosque")
-                        .WithMany()
-                        .HasForeignKey("MosqueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.User", "ProcessedBy")
-                        .WithMany()
-                        .HasForeignKey("ProcessedById");
-
-                    b.Navigation("Child");
-
-                    b.Navigation("Class");
-
-                    b.Navigation("Mosque");
-
-                    b.Navigation("ProcessedBy");
-                });
-
             modelBuilder.Entity("MosqueDonationAPI.Entities.Class", b =>
                 {
                     b.HasOne("MosqueDonationAPI.Entities.Imaam", "ClassTeacher")
@@ -1026,23 +620,6 @@ namespace MosqueDonationAPI.Migrations
                     b.Navigation("ReceivedBy");
                 });
 
-            modelBuilder.Entity("MosqueDonationAPI.Entities.FeePayment", b =>
-                {
-                    b.HasOne("MosqueDonationAPI.Entities.ChildFee", "ChildFee")
-                        .WithMany("FeePayments")
-                        .HasForeignKey("ChildFeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.User", "ReceivedBy")
-                        .WithMany()
-                        .HasForeignKey("ReceivedById");
-
-                    b.Navigation("ChildFee");
-
-                    b.Navigation("ReceivedBy");
-                });
-
             modelBuilder.Entity("MosqueDonationAPI.Entities.Imaam", b =>
                 {
                     b.HasOne("MosqueDonationAPI.Entities.Mosque", "Mosque")
@@ -1052,56 +629,6 @@ namespace MosqueDonationAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Mosque");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ImaamAttendance", b =>
-                {
-                    b.HasOne("MosqueDonationAPI.Entities.Imaam", "Imaam")
-                        .WithMany()
-                        .HasForeignKey("ImaamId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.User", "MarkedBy")
-                        .WithMany()
-                        .HasForeignKey("MarkedById");
-
-                    b.HasOne("MosqueDonationAPI.Entities.Mosque", "Mosque")
-                        .WithMany()
-                        .HasForeignKey("MosqueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Imaam");
-
-                    b.Navigation("MarkedBy");
-
-                    b.Navigation("Mosque");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ImaamSalary", b =>
-                {
-                    b.HasOne("MosqueDonationAPI.Entities.Imaam", "Imaam")
-                        .WithMany()
-                        .HasForeignKey("ImaamId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.Mosque", "Mosque")
-                        .WithMany()
-                        .HasForeignKey("MosqueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MosqueDonationAPI.Entities.User", "ProcessedBy")
-                        .WithMany()
-                        .HasForeignKey("ProcessedById");
-
-                    b.Navigation("Imaam");
-
-                    b.Navigation("Mosque");
-
-                    b.Navigation("ProcessedBy");
                 });
 
             modelBuilder.Entity("MosqueDonationAPI.Entities.Subject", b =>
@@ -1134,11 +661,6 @@ namespace MosqueDonationAPI.Migrations
             modelBuilder.Entity("MosqueDonationAPI.Entities.Child", b =>
                 {
                     b.Navigation("ClassEnrollments");
-                });
-
-            modelBuilder.Entity("MosqueDonationAPI.Entities.ChildFee", b =>
-                {
-                    b.Navigation("FeePayments");
                 });
 
             modelBuilder.Entity("MosqueDonationAPI.Entities.Class", b =>
